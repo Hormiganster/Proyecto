@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Konichiwaaaaaaa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BOTÓN INICIAL -->
+ <img
+                src="gato 2.jpg"
+                alt="Imagen de resultado"
+                class="resultado-img"
+            >
+    <button
+        class="empezar"
+        onclick="iniciar()">
+        Empezar
+    </button>
+    <!-- PREGUNTAS -->
+    <div
+        id="alerta"
+        class="alerta">
+        <div class="caja">
+            <h2 id="pregunta"></h2>
+            <button
+                class="boton si"
+                onclick="responder(true)">
+                SÍ
+            </button>
+        </div>
+    </div>
+    <!-- RESULTADO CON IMAGEN -->
+    <div
+        id="resultado"
+        class="alerta">
+        <div class="caja">
+            <img
+                src="gato 1.jpg"
+                alt="Imagen de resultado"
+                class="resultado-img"
+            >
+            <h2>
+              Te quiero mucho, una flor amarilla por que me haces feliz
+              Crack, idola, fiera.
+            </h2>
+            <p>
+                Por si nadie tenía pensado darte flores el dia de hoy 
+            </p>
+            <button
+                class="boton cerrar"
+                onclick="cerrarResultado()">
+                No presiones, no hay más xd
+            </button>
+        </div>
+    </div>
+    <script>
+        let preguntaActual = 1;
+        const preguntas = {
+            1: "¿Segura que si quieres mi regalo?",
+            2: "¿De verdad muy segura?",
+            3: "¿Soy guapo?",
+            4: "De mi para ti ¿Lo aceptas?",
+            5: "Feliz 21 de septimebre"
+        };
+        function iniciar() {
+            preguntaActual = 1;
+            mostrarPregunta();
+        }
+        function mostrarPregunta() {
+            document.getElementById("pregunta").textContent =
+                preguntas[preguntaActual];
+            document.getElementById("alerta").style.display =
+                "flex";
+        }
+        function responder(si) {
+            document.getElementById("alerta").style.display =
+                "none";
+            /* PREGUNTA 1 */
+            if (preguntaActual === 1) {
+                if (si) {
+                    preguntaActual = 2;
+                } else {
+                    preguntaActual = 3;
+                }
+            }
+            /* PREGUNTA 2 */
+            else if (preguntaActual === 2) {
+                if (si) {
+                    preguntaActual = 4;
+                } else {
+                    preguntaActual = 5;
+                }
+            }
+            /* PREGUNTA 3 */
+            else if (preguntaActual === 3) {
+                if (si) {
+                    preguntaActual = 4;
+                } else {
+                    preguntaActual = 5;
+                }
+            }
+            /* PREGUNTA 4 */
+            else if (preguntaActual === 4) {
+                if (si) {
+                    document.getElementById("resultado").style.display =
+                        "flex";
+                    return;
+                } else {
+                    preguntaActual = 5;
+                }
+            }
+            /* SIGUIENTE PREGUNTA */
+            setTimeout(
+                mostrarPregunta,
+                300
+            );
+        }
+        function cerrarResultado() {
+            document.getElementById("resultado").style.display =
+                "none";
+            preguntaActual = 5;
+            mostrarPregunta();
+        }
+    </script>
+</body>
+</html>
